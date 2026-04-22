@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeAI — Intelligent Resume Screening</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursor-glow"></div>
+<canvas id="particle-canvas"></canvas>
+
+<!-- NAV --> 
+<nav class="nav" id="main-nav">
+  <div class="nav-brand" onclick="showPage('home')">
+    <div class="nav-logo-wrap">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="url(#lg1)" stroke-width="1.5" fill="none"/>
+        <path d="M14 8L20 11V17L14 20L8 17V11L14 8Z" fill="url(#lg1)" opacity="0.7"/>
+        <defs>
+          <linearGradient id="lg1" x1="2" y1="2" x2="26" y2="26">
+            <stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#38bdf8"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <span class="nav-wordmark">Resume<em>AI</em></span>
+  </div>
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home')" class="nav-link" data-page="home">Home</a>
+    <a href="#" onclick="showPage('job')" class="nav-link" data-page="job">Job Match</a>
+    <a href="#" onclick="showPage('rank')" class="nav-link" data-page="rank">Rank Students</a>
+  </div>
+  <button class="btn-nav-cta" onclick="showPage('job')">Try Now →</button>
+</nav>
+
+<!-- ════════════════ HOME ════════════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="aurora-wrap">
+      <div class="aurora a1"></div>
+      <div class="aurora a2"></div>
+      <div class="aurora a3"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow"><span class="eyebrow-pulse"></span>NLP · TF-IDF · Cosine Similarity</div>
+        <h1 class="hero-title">
+          Screen Smarter<br>with <span class="shimmer-text">AI‑Powered</span><br>Resume Analysis
+        </h1>
+        <p class="hero-desc">Upload your resume PDF. Our NLP engine tokenizes, vectorizes with TF-IDF, and ranks every job using cosine similarity — the same math behind top recommendation systems.</p>
+        <div class="hero-actions">
+          <button class="btn-glow" onclick="showPage('job')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Match My Resume
+          </button>
+          <button class="btn-ghost" onclick="showPage('rank')">Rank Students <span class="arrow-anim">→</span></button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num">15+</span><span class="stat-lbl">Job Roles</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">15</span><span class="stat-lbl">Student Profiles</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">100%</span><span class="stat-lbl">Client‑Side AI</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hv-ring hv-ring-outer"></div>
+        <div class="hv-ring hv-ring-inner"></div>
+        <div class="hv-main-card">
+          <div class="hv-card-header">
+            <div class="hv-dots"><span></span><span></span><span></span></div>
+            <span class="hv-label">NLP Processing</span>
+          </div>
+          <div class="hv-steps">
+            <div class="hvs"><span class="hvs-icon">📄</span><span class="hvs-txt">PDF Extract</span><div class="hvs-bar"><div style="width:100%"></div></div></div>
+            <div class="hvs"><span class="hvs-icon">🔤</span><span class="hvs-txt">Tokenize</span><div class="hvs-bar"><div style="width:88%"></div></div></div>
+            <div class="hvs"><span class="hvs-icon">📊</span><span class="hvs-txt">TF-IDF</span><div class="hvs-bar"><div style="width:72%"></div></div></div>
+            <div class="hvs hvs-active"><span class="hvs-icon">🎯</span><span class="hvs-txt">Cosine Sim</span><div class="hvs-bar"><div style="width:94%"></div></div></div>
+          </div>
+        </div>
+        <div class="hv-float-card hv-fc1">
+          <div class="hfc-score">94%</div>
+          <div class="hfc-label">ML Engineer</div>
+          <div class="hfc-bar"><div style="width:94%"></div></div>
+        </div>
+        <div class="hv-float-card hv-fc2">
+          <div class="hfc-tags">
+            <span class="hfc-tag t1">python</span>
+            <span class="hfc-tag t2">tensorflow</span>
+            <span class="hfc-tag t3">NLP</span>
+            <span class="hfc-tag t4">SQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>Machine Learning</span><span class="mx">✦</span><span>Natural Language Processing</span><span class="mx">✦</span><span>TF-IDF Vectorization</span><span class="mx">✦</span><span>Cosine Similarity</span><span class="mx">✦</span><span>PDF Parsing</span><span class="mx">✦</span><span>AI Resume Screening</span><span class="mx">✦</span><span>Deep Learning</span><span class="mx">✦</span><span>Data Science</span><span class="mx">✦</span>
+      <span>Machine Learning</span><span class="mx">✦</span><span>Natural Language Processing</span><span class="mx">✦</span><span>TF-IDF Vectorization</span><span class="mx">✦</span><span>Cosine Similarity</span><span class="mx">✦</span><span>PDF Parsing</span><span class="mx">✦</span><span>AI Resume Screening</span><span class="mx">✦</span><span>Deep Learning</span><span class="mx">✦</span><span>Data Science</span><span class="mx">✦</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="sec-features">
+    <div class="container">
+      <div class="sec-eyebrow">Core Technology</div>
+      <h2 class="sec-heading">Built on <span class="text-gradient">Real AI Concepts</span></h2>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-icon" style="--c:#a78bfa">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h3>PDF Parsing</h3>
+          <p>Extracts raw text from every page using Mozilla PDF.js — entirely in your browser, no server.</p>
+          <div class="feat-glow" style="--g:#a78bfa"></div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon" style="--c:#38bdf8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+          </div>
+          <h3>NLP Pipeline</h3>
+          <p>Lowercase → Tokenize → Stopword removal → Term frequency. Real NLP in your browser.</p>
+          <div class="feat-glow" style="--g:#38bdf8"></div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon" style="--c:#34d399">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3>TF-IDF Vectors</h3>
+          <p>Text becomes weighted numeric vectors. Rare, meaningful terms score higher; filler words fade.</p>
+          <div class="feat-glow" style="--g:#34d399"></div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon" style="--c:#fb923c">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+          </div>
+          <h3>Cosine Similarity</h3>
+          <p>dot(A,B)/(|A|×|B|) — angle between resume & job vector. Closer = stronger semantic match.</p>
+          <div class="feat-glow" style="--g:#fb923c"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section class="sec-pipeline">
+    <div class="container">
+      <div class="sec-eyebrow">Explainability</div>
+      <h2 class="sec-heading">How the <span class="text-gradient">AI Works</span></h2>
+      <div class="pipeline-row">
+        <div class="pipe-step">
+          <div class="pipe-node"><span>01</span></div>
+          <div class="pipe-card"><h4>Text Extraction</h4><p>PDF.js reads every page, concatenates raw text into one string for processing.</p></div>
+        </div>
+        <div class="pipe-connector"></div>
+        <div class="pipe-step">
+          <div class="pipe-node"><span>02</span></div>
+          <div class="pipe-card"><h4>NLP Preprocessing</h4><p>Lowercase, tokenize via regex, remove stopwords — meaningful tokens remain.</p></div>
+        </div>
+        <div class="pipe-connector"></div>
+        <div class="pipe-step">
+          <div class="pipe-node"><span>03</span></div>
+          <div class="pipe-card"><h4>TF-IDF Vectorization</h4><p>TF × IDF weights: each document becomes a weighted numeric vector.</p></div>
+        </div>
+        <div class="pipe-connector"></div>
+        <div class="pipe-step">
+          <div class="pipe-node"><span>04</span></div>
+          <div class="pipe-card"><h4>Cosine Similarity</h4><p>dot(A,B)/(‖A‖‖B‖) — score ∈ [0,1] measures alignment.</p></div>
+        </div>
+        <div class="pipe-connector"></div>
+        <div class="pipe-step">
+          <div class="pipe-node pipe-node-final"><span>05</span></div>
+          <div class="pipe-card pipe-card-final"><h4>Ranked Output</h4><p>Results sorted descending by similarity — intelligent, explainable ranking.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE -->
+  <section class="sec-future">
+    <div class="container">
+      <div class="future-layout">
+        <div class="future-left">
+          <div class="sec-eyebrow">Roadmap</div>
+          <h2 class="sec-heading">What's<br><span class="text-gradient">Coming Next</span></h2>
+          <p style="color:var(--muted);font-size:.95rem;line-height:1.7;max-width:320px">Today: TF-IDF + cosine similarity. Tomorrow: contextual transformers and deep learning.</p>
+        </div>
+        <div class="future-right">
+          <div class="fc"><div class="fc-ico">🤖</div><div><strong>BERT &amp; Transformers</strong><p>Contextual embeddings that understand sentence meaning, not just word overlap.</p></div></div>
+          <div class="fc"><div class="fc-ico">🗂️</div><div><strong>Real Resume Parsing</strong><p>NER to extract education, experience, and certifications automatically.</p></div></div>
+          <div class="fc"><div class="fc-ico">🌐</div><div><strong>Live Job APIs</strong><p>LinkedIn, Naukri, and Indeed integrations for real-time listings.</p></div></div>
+          <div class="fc"><div class="fc-ico">🧬</div><div><strong>Deep Learning</strong><p>Neural nets trained on millions of resume–job pairs for superior matching.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">◈ ResumeAI</div>
+      <div class="footer-mid">TF-IDF · Cosine Similarity · PDF.js · Vanilla JS</div>
+      <div class="footer-right">© 2025 College Project</div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ════════════════ JOB PAGE ════════════════ -->
+<div id="page-job" class="page">
+  <div class="ip-aurora-wrap"><div class="ip-aurora ipa1"></div><div class="ip-aurora ipa2"></div></div>
+  <div class="page-inner">
+    <div class="page-header">
+      <button class="back-btn" onclick="showPage('home')">← Back</button>
+      <div class="ph-text">
+        <div class="sec-eyebrow">NLP + TF-IDF Engine</div>
+        <h1 class="page-title">Job <span class="text-gradient">Recommendation</span></h1>
+        <p class="page-desc">Upload your resume PDF or paste skills. The AI builds TF-IDF vectors and ranks all jobs by cosine similarity.</p>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <div class="upload-zone" id="upload-area-job" onclick="document.getElementById('pdf-upload-job').click()">
+        <div class="uz-pattern"></div>
+        <div class="uz-body">
+          <div class="uz-icon-ring">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div class="uz-title">Drop your Resume PDF here</div>
+          <div class="uz-sub">or click to browse · PDF files only</div>
+        </div>
+        <input type="file" id="pdf-upload-job" accept=".pdf" style="display:none" onchange="handlePDFUpload('job', this)" />
+      </div>
+
+      <div id="pdf-preview-job" class="pdf-preview hidden">
+        <div class="pdf-success-bar">
+          <div class="psb-check">✓</div>
+          <span id="pdf-name-job"></span>
+          <button class="psb-clear" onclick="clearPDF('job')">✕</button>
+        </div>
+        <div class="etb-label">Extracted Text (NLP Input)</div>
+        <textarea id="resume-text-job" class="styled-textarea" rows="5" placeholder="Extracted text will appear here…"></textarea>
+      </div>
+
+      <div class="divider-or"><div class="dline"></div><span>or type manually</span><div class="dline"></div></div>
+      <textarea id="manual-text-job" class="styled-textarea" rows="4" placeholder="Paste resume or skills…&#10;e.g. Python, machine learning, TensorFlow, SQL…"></textarea>
+
+      <div class="toggle-row">
+        <label class="fancy-toggle">
+          <input type="checkbox" id="show-nlp-job" checked />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-lbl">Show NLP Analysis Panel</span>
+        </label>
+      </div>
+
+      <button class="btn-glow full" onclick="runJobRecommendation()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Analyze &amp; Match Jobs
+      </button>
+    </div>
+
+    <div id="nlp-panel-job" class="nlp-panel hidden">
+      <div class="nlp-hdr"><span class="nlp-ico">🔬</span><span>NLP Processing Steps</span><span class="nlp-live">● Live</span></div>
+      <div class="nlp-steps" id="nlp-steps-job"></div>
+    </div>
+
+    <div id="job-results" class="results-section hidden">
+      <div class="res-hdr"><h2 class="res-title">Matched Jobs</h2><span id="job-count-badge" class="res-badge"></span></div>
+      <div id="job-cards" class="result-cards"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ RANK PAGE ════════════════ -->
+<div id="page-rank" class="page">
+  <div class="ip-aurora-wrap"><div class="ip-aurora ipa1" style="--c1:#06b6d4;--c2:#3b82f6"></div><div class="ip-aurora ipa2" style="--c1:#a78bfa;--c2:#ec4899"></div></div>
+  <div class="page-inner">
+    <div class="page-header">
+      <button class="back-btn" onclick="showPage('home')">← Back</button>
+      <div class="ph-text">
+        <div class="sec-eyebrow">AI Ranking Engine</div>
+        <h1 class="page-title">Student <span class="text-gradient">Ranking</span></h1>
+        <p class="page-desc">Select a role. The AI compares every student profile against the role description and ranks by cosine similarity.</p>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <label class="field-label">Select a Job Role</label>
+      <div class="role-chips" id="role-chips"></div>
+      <input type="text" id="role-input" class="styled-input" placeholder="Or type: Data Analyst, ML Engineer…" />
+
+      <div class="toggle-row">
+        <label class="fancy-toggle">
+          <input type="checkbox" id="show-nlp-rank" checked />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-lbl">Show NLP Analysis Panel</span>
+        </label>
+      </div>
+
+      <button class="btn-glow full" onclick="runStudentRanking()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Rank Students
+      </button>
+    </div>
+
+    <div id="nlp-panel-rank" class="nlp-panel hidden">
+      <div class="nlp-hdr"><span class="nlp-ico">🔬</span><span>NLP Processing Steps</span><span class="nlp-live">● Live</span></div>
+      <div class="nlp-steps" id="nlp-steps-rank"></div>
+    </div>
+
+    <div id="rank-results" class="results-section hidden">
+      <div class="res-hdr"><h2 class="res-title">Student Rankings</h2><span id="role-display-badge" class="res-badge"></span></div>
+      <div id="rank-cards-grid" class="rank-cards-grid"></div>
+    </div>
+  </div>
+</div>
+
+<script src="nlp.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
